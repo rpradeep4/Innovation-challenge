@@ -1,0 +1,208 @@
+<style>
+
+
+#ex1Slider .slider-selection {
+  background: #186dc6;
+     }
+
+    #ex2Slider .slider-selection {
+  background: #BABABA;
+     }
+
+    #ex3Slider .slider-selection {
+  background: #BABABA;
+     }
+
+     slider12c .slider-selection {
+  background: yellow;
+}
+  </style>
+
+  path.slice{
+  stroke-width:2px;
+}
+polyline{
+  opacity: .3;
+  stroke: black;
+  stroke-width: 2px;
+  fill: none;
+} 
+svg text.percent{
+  fill:white;
+  text-anchor:middle;
+  font-size:12px;
+}
+
+  <style>
+
+<style>
+#makeMeDraggable { width: 300px; height: 300px; background: black; }
+</style>
+
+.flip-container {
+  perspective: 100;
+}
+  /* flip the pane when hovered */
+  .flip-container:hover .flipper, .flip-container.hover .flipper {
+    transform: rotateX(180deg);
+  }
+
+
+  .flip-container1 {
+  perspective: 1000;
+}
+  /* flip the pane when hovered */
+  .flip-container1:hover .flipper, .flip-container1.hover1 .flipper {
+    transform: rotateY(180deg);
+  }
+
+  .link {
+  stroke: #ccc;
+}
+
+.node text {
+  pointer-events: none;
+  font: 10px sans-serif;
+}
+
+/*trial */
+
+.teamlogo{
+padding-left:5%;
+}
+/* entire container, keeps perspective */
+.flip-container-try{
+/*perspective*/
+-webkit-perspective:1000;
+   -moz-perspective:1000;
+    -ms-perspective:1000;
+     -o-perspective:1000;
+        perspective:1000;
+}
+/* flip the pane when hovered */
+  .flipped {
+/*transform*/
+-webkit-transform:rotateY(180deg);
+   -moz-transform:rotateY(180deg);
+    -ms-transform:rotateY(180deg);
+     -o-transform:rotateY(180deg);
+        transform:rotateY(180deg);
+}
+.flip-container-try, .front-try, .back-try{
+width:50px;
+height:50px;
+}
+/* flip speed goes here */
+.flipper {
+/*transition*/
+-webkit-transition:0.6s;
+   -moz-transition:0.6s;
+     -o-transition:0.6s;
+        transition:0.6s;
+/*transform-style*/
+-webkit-transform-style:preserve-3d;
+   -moz-transform-style:preserve-3d;
+    -ms-transform-style:preserve-3d;
+     -o-transform-style:preserve-3d;
+        transform-style:preserve-3d;
+position:relative;
+}
+/* hide back of pane during swap */
+/*
+.front, .back{
+/*backface-visibility*/
+
+/* front pane, placed above back */
+.front-try{
+z-index:2;
+}
+/* back, initially hidden pane */
+.back-try{
+/*transform*/
+-webkit-transform:rotateY(180deg);
+   -moz-transform:rotateY(180deg);
+    -ms-transform:rotateY(180deg);
+     -o-transform:rotateY(180deg);
+        transform:rotateY(180deg);
+}
+body .back_img{
+ background:url("http://41.media.tumblr.com/7966b159dab1e92c984339a380925f87/tumblr_nsp3sue9T61uvgk9lo1_1280.png");
+ 
+  background-size: cover;  
+}
+  
+button .trans{
+  background-color: Transparent;
+  background: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+  heading{
+    color: #336633;
+    font-size: 25px;
+  } 
+  a{
+    color:#000;
+    font-size: 20px;
+  }
+  p{
+    color: #000;
+    font-size: 20px;
+
+  }
+/*
+.flip-container, .flip-container1,.front, .back {
+  width: 224px;
+  height: 220px;
+}*/
+
+/* flip speed goes here */
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+
+  position: relative;
+}
+
+/* hide back of pane during swap */
+
+.front, .back {
+  backface-visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.front {
+  backface-visibility: hidden;
+
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+
+/* front pane, placed above back */
+.front {
+
+  /* for firefox 31 */
+  height: 200px;
+  transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+  height: 200px;
+  transform: rotateY(180deg);
+}
+
+.inner-image {
+  position: absolute;
+  top: 55px;
+  right: 25px;
+}

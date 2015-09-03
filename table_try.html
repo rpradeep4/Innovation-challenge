@@ -1,0 +1,2360 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Table Examples</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-table.css">
+    <link rel="stylesheet" href="css/toggle.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/bootstrap-editable.css">
+    <link rel="stylesheet" href="assets/examples.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+   
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-table.js"></script>
+    <script src="js/bootstrap-table-export.js"></script>
+    <script src="js/tableExport.js"></script>
+    <script src="js/bootstrap-table-editable.js"></script>
+    <script src="js/bootstrap-editable.js"></script>
+    <script src="js/ga.js"></script>
+     <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/json2/20140204/json2.min.js"></script>
+    <![endif]-->
+</head>
+
+<style>
+
+.node rect {
+  cursor: pointer;
+  fill: #fff;
+  fill-opacity: .5;
+  stroke: #3182bd;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font: 10px sans-serif;
+  pointer-events: none;
+}
+
+path.link {
+  fill: none;
+  stroke: #9ecae1;
+  stroke-width: 1.5px;
+}
+#body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   
+  
+}
+/* PIE */
+
+
+#graph_here {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 960px;
+  height: 500px;
+  position: relative;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+}
+
+
+svg .bullet{
+    width: 500px;
+    height: 50px;
+}
+
+
+path.slice{
+    stroke-width:2px;
+}
+
+polyline{
+    opacity: .3;
+    stroke: white;
+    stroke-width: 2px;
+    fill: none;
+}
+
+
+
+#container {
+  height: 400px; 
+  min-width: 310px; 
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+
+
+.bullet { font: 10px sans-serif; }
+.bullet .marker { stroke: #000; stroke-width: 4px; }
+.bullet .tick line { stroke: #666; stroke-width: .5px; }
+.bullet .range.s0 { fill: #fff; }
+.bullet .range.s1 { fill: #ddd; }
+.bullet .range.s2 { fill: #ccc; }
+.bullet .measure.s0 { fill: lightsteelblue; }
+.bullet .measure.s1 { fill: steelblue; }
+.bullet .title { font-size: 10px; font-weight: bold; }
+.bullet .subtitle { fill: #999; }
+
+
+.cont .legend {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: start;
+  font-size: 12px;
+}
+
+.cont text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+.cont .label {
+  fill: white;
+  font: 14px sans-serif;
+  text-anchor: end;
+}
+
+.bar:hover {
+  fill: brown;
+}
+.cont{
+    height: 900px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+</style>
+
+<!-- Modal -->
+
+
+
+<!--question-->
+ <a href = "COMPARE_BOARD.html" ><img src = "images/top-border.png" style = "position: absolute; left: 40px;"></a>
+ <img src = "images/detailed-comparison.png" width="1500px" style= "position: absolute; top:140px">
+
+    <div id="o-wrapper" class="o-wrapper">
+                          <div class="c-buttons">
+                            
+                                      <button id="c-button--push-right"   ><img src = "images/transparent.png"   style = "position:absolute; top:42px; right:194px;"></button>
+                     
+                     
+        
+      
+       
+       
+      </div>
+    </div> 
+
+    <!-- right menu -->
+
+
+
+    
+     <body >
+
+
+<nav id="c-menu--push-right" class="c-menu c-menu--push-right"  style = "position:absolute; top:0px; right:0px;">
+  <!-- <button class="c-menu__close"><img src ="images/sym.png" > </button>-->
+  <ul class="c-menu__items">
+    
+    
+  </ul>
+</nav><!-- /c-menu push-right -->
+<div id="c-mask" class="c-mask"></div> 
+<div class="container" style ="display:inline; position:absolute; top:150px;"  >
+
+   <h1 class = "animated fadeInRight heading"><strong><span style="color: #336633; display:inline; opacity: 0.0">DETAILED COMPARISON</span></strong></h1>
+
+
+     <button id= "detailed_b" type="button" class="btn  animated fadeInLeft" style= "position:absolute; top:70px;left:1233px;" >DETAILED ANALYSIS</button>
+     <div class="dropdown" style ="display:inline; position:absolute; top:70px;left:1233px; opacity: 0.0" >
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">START TRADING
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">HYG</a></li>
+        <li><a href="#">TLH</a></li>
+        <li><a href="#">AGG</a></li>
+      </ul>
+</div>
+         <!--
+     <button type="button" class="btn btn-success butt animated fadeInLeft" data-toggle="modal" data-target="#myModal">GRAPHICAL ANALYSIS</button>-->
+    
+   
+
+    <div class ="col-md-8" style:"display:inline" STYLE = "display:none">
+    <div id="toolbar" STYLE = "display:none" >
+        <button id="remove" style ="display:inline" class="btn btn-primary butt animated fadeInLeft" >
+            <i class="glyphicon glyphicon-remove"></i> Delete Row
+        </button>
+       
+         
+    </div>
+    
+    <table  STYLE = "display:none" class = "animated slideInLeft" id="table"
+           data-toolbar="#toolbar"
+           data-search="true"
+           data-show-refresh="true"
+           data-show-toggle="true"
+           data-show-columns="true"
+           data-show-export="true"
+           data-detail-view="true"
+           data-detail-formatter="detailFormatter"
+           data-minimum-count-columns="2"
+           data-show-pagination-switch="true"
+           data-pagination="true"
+           data-page-list="[10, 25, 50, 100, ALL]"
+          
+           data-side-pagination="server"
+           data-url="/examples/bootstrap_table/data"
+           data-response-handler="responseHandler">
+    </table>
+</div>
+<!--tree -->
+<!-- <button id="CHOOSE" class="btn  animated fadeInRight" >
+             MORE PRODUCTS </button>-->
+
+<div class ="col-md-3 animated slideInLeft" style="display:none" id="container">
+</div>
+
+<!--end tree -->
+
+<!--graph -->
+
+
+<!--summary -->
+<div id= "detailed" class = "col-md-4" style="display:none; font-weight: bold; top: 40px; left: 50px;">
+     <button id = "graphical" type="button" style = "display:none; position:absolute; top:270px;left:120px;" class="btn   animated fadeInLeft" >HIDE TABLES</button>
+     <br>
+<H3 style="display:inline;"> SUMMARY </H3><img id = "1" src = "images/plus.png" width="12px" height="15px">
+          <table id ="summary" style="display:none" class="table table-striped table-bordered table-hover animated slideInLeft">
+    <thead>
+      <tr>
+        <th class="info">   </th>
+        <th class="info">ETF1</th>
+        <th class="info">ETF2</th>
+         <th class="info" id = "ETF3" style = "display:none">HYG</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="primary">
+        <td>NAV</td>
+        <td></td>
+        <td></td>
+         <td id = "ETF31" style = "display:none" ></td>
+      </tr>
+      <tr class="info">
+        <td>LATEST PRICE</td>
+        <td></td>
+        <td></td>
+         <td id = "ETF32" style = "display:none" ></td>
+      </tr>
+      <tr class="primary">
+        <td>CURRENCY</td>
+        <td></td>
+        <td></td>
+         <td id = "ETF33" style = "display:none" ></td>
+      </tr>
+      <tr class="info">
+        <td>FUND SIZE</td>
+        <td></td>
+        <td></td>
+         <td id = "ETF34" style = "display:none" ></td>
+      </tr>
+      <tr class="primary">
+        <td>INCEPTION DATE</td>
+        <td></td>
+        <td></td>
+         <td id = "ETF35" style = "display:none" ></td>
+        </tr>
+        <tr class = "info">
+        <td>CLOSED FOR NEW CREATIONS</td>
+        <td></td>
+        <td></td>
+         <td id = "ETF36" style = "display:none" ></td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+  <br>
+<!--table end -->
+
+<!--benchark -->
+<H3 style="display:inline" > BENCHMARK/OBJECTIVE </H3><img id = "2" src = "images/plus.png" width="12px" height="15px">
+          <table style="display:none" id = "bench" class="table table-striped table-bordered table-hover animated slideInLeft">
+    <thead>
+      <tr>
+        <th class="info">   </th>
+        <th class="info">ETF1</th>
+        <th class="info">ETF2</th>
+         <th class="info" id = "ETF3" style = "display:none">HYG</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="primary">
+        <td>OBJECTIVE</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="info">
+        <td>ASSET CLASS</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="primary">
+        <td>LEVERAGE/SHORT</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="info">
+        <td>BENCHMARK TICKER</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="primary">
+        <td>BENCHMARK NAME</td>
+        <td></td>
+        <td></td>
+        </tr>
+       
+      
+    </tbody>
+  </table>
+  <br>
+<!--table end -->
+
+<!--REPLICATION -->
+
+<H3 style="display:inline" > REPLICATION </H3><img id = "3" src = "images/plus.png" width="12px" height="15px">
+          <table style="display:none" id = "replication" class="table table-striped table-bordered table-hover animated slideInLeft">
+    <thead>
+      <tr>
+        <th class="info">   </th>
+        <th class="info">ETF1</th>
+        <th class="info">ETF2</th>
+         <th id = "ETF3" style = "display:none">HYG</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="primary">
+        <td># OF HOLDINGS(ETF)</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="info">
+        <td># OF HOLDINGS(BENCHMARK INDEX)</td>
+        <td></td>
+        <td></td>
+      </tr>
+     
+      
+    </tbody>
+  </table>
+  <br>
+
+
+<h3 style="display:inline" > CREATION UNIT </h3><img id = "4" src = "images/plus.png" width="12px" height="15px">
+
+          <table style="display:none" ID ="creation"class="table table-striped table-bordered table-hover animated slideInLeft">
+    <thead>
+      <tr>
+        <th class="info">   </th>
+        <th class="info">ETF1</th>
+        <th class="info">ETF2</th>
+         <th id = "ETF3" style = "display:none">HYG</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="primary">
+        <td>CREATION/REDEMPTION FEE</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="info">
+        <td>CREATION/REDEMPTION</td>
+        <td></td>
+        <td></td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+<!--table end -->
+<br>
+
+<!--LIQ -->
+<H3 style="display:inline" > COSTS & LIQUIDITY</H3><img id = "5" src = "images/plus.png" width="12px" height="15px">
+    <table style="display:none" id="liq" class="table table-striped table-bordered table-hover animated slideInLeft">
+    <thead>
+      <tr>
+        <th class="info">   </th>
+        <th class="info">ETF1</th>
+        <th class="info">ETF2</th>
+         <th id = "ETF3" style = "display:none">HYG</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="primary">
+        <td>EXPENSE RATIO %</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="info">
+        <td>CURRENT BID-ASK SPREAD</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="primary">
+        <td>30 DAYS AVG DAILY VOLUME</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="info">
+        <td>30 DAYS AVG DAILY VOLUME(SHARES)</td>
+        <td></td>
+        <td></td>
+      </tr>
+     
+      
+    </tbody>
+  </table>
+  <br>
+<!--table end -->
+
+ <!--CONT -->
+ <H3 style="display:inline" > INCOME </H3><img id = "income_tag" src = "images/plus.png" width="12px" height="15px">
+ <table style="display:none" id = "income" class="table table-striped table-bordered table-hover animated slideInLeft">
+    <thead>
+      <tr>
+        <th class="info">   </th>
+        <th class="info">ETF1</th>
+        <th class="info">ETF2</th>
+         <th id = "ETF3" style = "display:none">HYG</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="primary">
+        <td> DIVIDEND YIELD</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="info">
+        <td>DIVIDEND FREQUENCY </td>
+        <td></td>
+        <td></td>
+      </tr>
+      
+     
+      
+    </tbody>
+  </table>
+  <br>
+
+  <H3 style="display:inline" > FUND FLOWS</H3><img id = "fund_tag" src = "images/plus.png" width="12px" height="15px">
+ <table style="display:none" id = "fund_flows" class="table table-striped table-bordered table-hover animated slideInLeft">
+    <thead>
+      <tr>
+        <th class="info">   </th>
+        <th class="info">ETF1</th>
+        <th class="info">ETF2</th>
+         <th id = "ETF3" style = "display:none">HYG</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="primary">
+        <td> 1 MONTH</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="info">
+        <td>1 YEAR </td>
+        <td></td>
+        <td></td>
+      </tr>
+      
+     
+      
+    </tbody>
+  </table>
+  <br>
+
+   <H3 style="display:inline" > RISK</H3><img id = "risk_tag" src = "images/plus.png" width="12px" height="15px">
+ <table style="display:none" id = "risk" class="table table-striped table-bordered table-hover animated slideInLeft">
+    <thead>
+      <tr>
+        <th class="info">   </th>
+        <th class="info">ETF1</th>
+        <th class="info">ETF2</th>
+         <th id = "ETF3" style = "display:none">HYG</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="primary">
+        <td> NAV TRACKING ERROR</td>
+        <td></td>
+        <td></td>
+      </tr>
+     
+    </tbody>
+  </table>
+  <br>
+
+
+   <H3 style="display:inline" > YTD PERFORMANCE </H3><img id = "ytd_tag" src = "images/plus.png" width="12px" height="15px">
+ <table style="display:none" id = "ytd" class="table table-striped table-bordered table-hover animated slideInLeft">
+    <thead>
+      <tr>
+        <th class="info">   </th>
+        <th class="info">ETF1</th>
+        <th class="info">ETF2</th>
+         <th id = "ETF3" style = "display:none">HYG</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="primary">
+        <td> MARKET PRICE PERFORMANCE - PRICE RETURN</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="info">
+        <td> NAV PERFORMANCE - PRICE RETURN</td>
+        <td></td>
+        <td></td>
+      </tr>
+     <tr class="primary">
+        <td> MARKET PRICE PERFORMANCE - TOTAL RETURN</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="info">
+        <td> NAV PERFORMANCE - TOTAL RETURN</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+
+
+
+</div>
+
+
+<div id = "graph_col" class="col-md-8" style="overflow:auto; display:inline;">
+
+    <div   id="body_1" >
+    <br><br>
+    <button id = "butt9" type="button" style ="display:inline" class="btn " >SECTOR ALLOCATION</button>
+            
+            <button type="button" style ="display:inline" id = "butt10" class="btn ">FIXED INC ALLOCATION
+            </button>
+
+            
+                   
+             <button type="button" style ="display:inline color:#fff" id = "butt7" class="btn  ">GEOGRAPHIC
+            </button>
+                       
+                       <!-- <button class="btn btn-info " onclick="transition()">Update</button>-->
+                        <div id ="graph_here" style="display:none;">
+                          <br>
+                            <button id="next" class="randomize">Next ETF</button>
+                            <!--
+                            <h3 id = "1" style = "display:none"> <strong> HYG </strong> </h3>
+                            <h3 id = "2" style = "display:none"> <strong> TLH </strong> </h3>
+                            <h3 id = "3" style = "display:none"> <strong> AGG </strong> </h3>-->
+                        </div> <!--graph ends here -->
+                       <!--
+                        <div id ="graph_here1" style="display:none; overflow:auto; height:720px; width:600px;">
+                            
+                        </div>
+                        <div id = "load" style="display:none;">
+
+
+                        </div>-->
+                        <!--highchart-->
+                        <div id="container" style="height: 520px; width:780px;">
+                        </div>
+                        <!-- by grade -->
+                        <svg id = "hor_bar" class="cont" style = "overflow:auto;position:absolute; top:100px;left:33px;"></svg>
+                       
+                       
+                   
+               
+                
+ </div>
+
+  <div id = "fix"  style="display:none; position:absolute; top:100px;left:33px;" >
+                            <button id="button1" >NEXT ETF </button>
+                        </div>
+
+</div><!--graph coll -->
+
+
+
+<!--tree -->
+<script>
+var data = {
+    "name": "MORE PRODUCTS ",
+    "children": [
+        {
+        "name": "RELATED PRODUCTS",
+        "children": [
+            {
+            "name": "RELATED TO AGG",
+            "children": [
+                {
+                "name": "IUSB",
+                "size": 3938},
+            {
+                "name": "ISTB",
+                "size": 3812},
+            {
+                "name": "ILTB",
+                "size": 6714},
+            {
+                "name": "GOVT",
+                "size": 743}
+            ]},
+        {
+            "name": "RECENTLY VIEWED",
+            "children": [
+                {
+                "name": "HYG",
+                "size": 3534},
+            {
+                "name": "SHYG",
+                "size": 5731},
+            {
+                "name": "LQD",
+                "size": 7840},
+            
+            ]},
+        {
+            "name": "RELATED TO HYG",
+            "children": [
+                {
+                "name": "SHYG",
+                "size": 7074},
+                {
+                "name": "HYXU",
+                "size": 7074},
+                {
+                "name": "GHYG",
+                "size": 7074},
+                {
+                "name": "HYGH",
+                "size": 7074},
+            ]}
+        ]},
+    /*{
+        "name": "animate",
+        "children": [
+            {
+            "name": "Easing",
+            "size": 17010},
+        {
+            "name": "FunctionSequence",
+            "size": 5842},
+        {
+            "name": "interpolate",
+            "children": [
+                {
+                "name": "ArrayInterpolator",
+                "size": 1983},
+            {
+                "name": "ColorInterpolator",
+                "size": 2047},
+            {
+                "name": "DateInterpolator",
+                "size": 1375},
+            {
+                "name": "Interpolator",
+                "size": 8746},
+            {
+                "name": "MatrixInterpolator",
+                "size": 2202},
+            {
+                "name": "NumberInterpolator",
+                "size": 1382},
+            {
+                "name": "ObjectInterpolator",
+                "size": 1629},
+            {
+                "name": "PointInterpolator",
+                "size": 1675},
+            {
+                "name": "RectangleInterpolator",
+                "size": 2042}
+            ]},
+        {
+            "name": "ISchedulable",
+            "size": 1041},
+        {
+            "name": "Parallel",
+            "size": 5176},
+        {
+            "name": "Pause",
+            "size": 449},
+        {
+            "name": "Scheduler",
+            "size": 5593},
+        {
+            "name": "Sequence",
+            "size": 5534},
+        {
+            "name": "Transition",
+            "size": 9201},
+        {
+            "name": "Transitioner",
+            "size": 19975},
+        {
+            "name": "TransitionEvent",
+            "size": 1116},
+        {
+            "name": "Tween",
+            "size": 6006}
+        ]},
+    {
+        "name": "data",
+        "children": [
+            {
+            "name": "converters",
+            "children": [
+                {
+                "name": "Converters",
+                "size": 721},
+            {
+                "name": "DelimitedTextConverter",
+                "size": 4294},
+            {
+                "name": "GraphMLConverter",
+                "size": 9800},
+            {
+                "name": "IDataConverter",
+                "size": 1314},
+            {
+                "name": "JSONConverter",
+                "size": 2220}
+            ]},
+        {
+            "name": "DataField",
+            "size": 1759},
+        {
+            "name": "DataSchema",
+            "size": 2165},
+        {
+            "name": "DataSet",
+            "size": 586},
+        {
+            "name": "DataSource",
+            "size": 3331},
+        {
+            "name": "DataTable",
+            "size": 772},
+        {
+            "name": "DataUtil",
+            "size": 3322}
+        ]},
+    {
+        "name": "display",
+        "children": [
+            {
+            "name": "DirtySprite",
+            "size": 8833},
+        {
+            "name": "LineSprite",
+            "size": 1732},
+        {
+            "name": "RectSprite",
+            "size": 3623},
+        {
+            "name": "TextSprite",
+            "size": 10066}
+        ]},
+    {
+        "name": "flex",
+        "children": [
+            {
+            "name": "FlareVis",
+            "size": 4116}
+        ]},
+    {
+        "name": "physics",
+        "children": [
+            {
+            "name": "DragForce",
+            "size": 1082},
+        {
+            "name": "GravityForce",
+            "size": 1336},
+        {
+            "name": "IForce",
+            "size": 319},
+        {
+            "name": "NBodyForce",
+            "size": 10498},
+        {
+            "name": "Particle",
+            "size": 2822},
+        {
+            "name": "Simulation",
+            "size": 9983},
+        {
+            "name": "Spring",
+            "size": 2213},
+        {
+            "name": "SpringForce",
+            "size": 1681}
+        ]},
+    {
+        "name": "query",
+        "children": [
+            {
+            "name": "AggregateExpression",
+            "size": 1616},
+        {
+            "name": "And",
+            "size": 1027},
+        {
+            "name": "Arithmetic",
+            "size": 3891},
+        {
+            "name": "Average",
+            "size": 891},
+        {
+            "name": "BinaryExpression",
+            "size": 2893},
+        {
+            "name": "Comparison",
+            "size": 5103},
+        {
+            "name": "CompositeExpression",
+            "size": 3677},
+        {
+            "name": "Count",
+            "size": 781},
+        {
+            "name": "DateUtil",
+            "size": 4141},
+        {
+            "name": "Distinct",
+            "size": 933},
+        {
+            "name": "Expression",
+            "size": 5130},
+        {
+            "name": "ExpressionIterator",
+            "size": 3617},
+        {
+            "name": "Fn",
+            "size": 3240},
+        {
+            "name": "If",
+            "size": 2732},
+        {
+            "name": "IsA",
+            "size": 2039},
+        {
+            "name": "Literal",
+            "size": 1214},
+        {
+            "name": "Match",
+            "size": 3748},
+        {
+            "name": "Maximum",
+            "size": 843},
+        {
+            "name": "methods",
+            "children": [
+                {
+                "name": "add",
+                "size": 593},
+            {
+                "name": "and",
+                "size": 330},
+            {
+                "name": "average",
+                "size": 287},
+            {
+                "name": "count",
+                "size": 277},
+            {
+                "name": "distinct",
+                "size": 292},
+            {
+                "name": "div",
+                "size": 595},
+            {
+                "name": "eq",
+                "size": 594},
+            {
+                "name": "fn",
+                "size": 460},
+            {
+                "name": "gt",
+                "size": 603},
+            {
+                "name": "gte",
+                "size": 625},
+            {
+                "name": "iff",
+                "size": 748},
+            {
+                "name": "isa",
+                "size": 461},
+            {
+                "name": "lt",
+                "size": 597},
+            {
+                "name": "lte",
+                "size": 619},
+            {
+                "name": "max",
+                "size": 283},
+            {
+                "name": "min",
+                "size": 283},
+            {
+                "name": "mod",
+                "size": 591},
+            {
+                "name": "mul",
+                "size": 603},
+            {
+                "name": "neq",
+                "size": 599},
+            {
+                "name": "not",
+                "size": 386},
+            {
+                "name": "or",
+                "size": 323},
+            {
+                "name": "orderby",
+                "size": 307},
+            {
+                "name": "range",
+                "size": 772},
+            {
+                "name": "select",
+                "size": 296},
+            {
+                "name": "stddev",
+                "size": 363},
+            {
+                "name": "sub",
+                "size": 600},
+            {
+                "name": "sum",
+                "size": 280},
+            {
+                "name": "update",
+                "size": 307},
+            {
+                "name": "variance",
+                "size": 335},
+            {
+                "name": "where",
+                "size": 299},
+            {
+                "name": "xor",
+                "size": 354},
+            {
+                "name": "_",
+                "size": 264}
+            ]},
+        {
+            "name": "Minimum",
+            "size": 843},
+        {
+            "name": "Not",
+            "size": 1554},
+        {
+            "name": "Or",
+            "size": 970},
+        {
+            "name": "Query",
+            "size": 13896},
+        {
+            "name": "Range",
+            "size": 1594},
+        {
+            "name": "StringUtil",
+            "size": 4130},
+        {
+            "name": "Sum",
+            "size": 791},
+        {
+            "name": "Variable",
+            "size": 1124},
+        {
+            "name": "Variance",
+            "size": 1876},
+        {
+            "name": "Xor",
+            "size": 1101}
+        ]},
+    {
+        "name": "scale",
+        "children": [
+            {
+            "name": "IScaleMap",
+            "size": 2105},
+        {
+            "name": "LinearScale",
+            "size": 1316},
+        {
+            "name": "LogScale",
+            "size": 3151},
+        {
+            "name": "OrdinalScale",
+            "size": 3770},
+        {
+            "name": "QuantileScale",
+            "size": 2435},
+        {
+            "name": "QuantitativeScale",
+            "size": 4839},
+        {
+            "name": "RootScale",
+            "size": 1756},
+        {
+            "name": "Scale",
+            "size": 4268},
+        {
+            "name": "ScaleType",
+            "size": 1821},
+        {
+            "name": "TimeScale",
+            "size": 5833}
+        ]},
+    {
+        "name": "util",
+        "children": [
+            {
+            "name": "Arrays",
+            "size": 8258},
+        {
+            "name": "Colors",
+            "size": 10001},
+        {
+            "name": "Dates",
+            "size": 8217},
+        {
+            "name": "Displays",
+            "size": 12555},
+        {
+            "name": "Filter",
+            "size": 2324},
+        {
+            "name": "Geometry",
+            "size": 10993},
+        {
+            "name": "heap",
+            "children": [
+                {
+                "name": "FibonacciHeap",
+                "size": 9354},
+            {
+                "name": "HeapNode",
+                "size": 1233}
+            ]},
+        {
+            "name": "IEvaluable",
+            "size": 335},
+        {
+            "name": "IPredicate",
+            "size": 383},
+        {
+            "name": "IValueProxy",
+            "size": 874},
+        {
+            "name": "math",
+            "children": [
+                {
+                "name": "DenseMatrix",
+                "size": 3165},
+            {
+                "name": "IMatrix",
+                "size": 2815},
+            {
+                "name": "SparseMatrix",
+                "size": 3366}
+            ]},
+        {
+            "name": "Maths",
+            "size": 17705},
+        {
+            "name": "Orientation",
+            "size": 1486},
+        {
+            "name": "palette",
+            "children": [
+                {
+                "name": "ColorPalette",
+                "size": 6367},
+            {
+                "name": "Palette",
+                "size": 1229},
+            {
+                "name": "ShapePalette",
+                "size": 2059},
+            {
+                "name": "SizePalette",
+                "size": 2291}
+            ]},
+        {
+            "name": "Property",
+            "size": 5559},
+        {
+            "name": "Shapes",
+            "size": 19118},
+        {
+            "name": "Sort",
+            "size": 6887},
+        {
+            "name": "Stats",
+            "size": 6557},
+        {
+            "name": "Strings",
+            "size": 22026}
+        ]},
+    {
+        "name": "vis",
+        "children": [
+            {
+            "name": "axis",
+            "children": [
+                {
+                "name": "Axes",
+                "size": 1302},
+            {
+                "name": "Axis",
+                "size": 24593},
+            {
+                "name": "AxisGridLine",
+                "size": 652},
+            {
+                "name": "AxisLabel",
+                "size": 636},
+            {
+                "name": "CartesianAxes",
+                "size": 6703}
+            ]},
+        {
+            "name": "controls",
+            "children": [
+                {
+                "name": "AnchorControl",
+                "size": 2138},
+            {
+                "name": "ClickControl",
+                "size": 3824},
+            {
+                "name": "Control",
+                "size": 1353},
+            {
+                "name": "ControlList",
+                "size": 4665},
+            {
+                "name": "DragControl",
+                "size": 2649},
+            {
+                "name": "ExpandControl",
+                "size": 2832},
+            {
+                "name": "HoverControl",
+                "size": 4896},
+            {
+                "name": "IControl",
+                "size": 763},
+            {
+                "name": "PanZoomControl",
+                "size": 5222},
+            {
+                "name": "SelectionControl",
+                "size": 7862},
+            {
+                "name": "TooltipControl",
+                "size": 8435}
+            ]},
+        {
+            "name": "data",
+            "children": [
+                {
+                "name": "Data",
+                "size": 20544},
+            {
+                "name": "DataList",
+                "size": 19788},
+            {
+                "name": "DataSprite",
+                "size": 10349},
+            {
+                "name": "EdgeSprite",
+                "size": 3301},
+            {
+                "name": "NodeSprite",
+                "size": 19382},
+            {
+                "name": "render",
+                "children": [
+                    {
+                    "name": "ArrowType",
+                    "size": 698},
+                {
+                    "name": "EdgeRenderer",
+                    "size": 5569},
+                {
+                    "name": "IRenderer",
+                    "size": 353},
+                {
+                    "name": "ShapeRenderer",
+                    "size": 2247}
+                ]},
+            {
+                "name": "ScaleBinding",
+                "size": 11275},
+            {
+                "name": "Tree",
+                "size": 7147},
+            {
+                "name": "TreeBuilder",
+                "size": 9930}
+            ]},
+        {
+            "name": "events",
+            "children": [
+                {
+                "name": "DataEvent",
+                "size": 2313},
+            {
+                "name": "SelectionEvent",
+                "size": 1880},
+            {
+                "name": "TooltipEvent",
+                "size": 1701},
+            {
+                "name": "VisualizationEvent",
+                "size": 1117}
+            ]},
+        {
+            "name": "legend",
+            "children": [
+                {
+                "name": "Legend",
+                "size": 20859},
+            {
+                "name": "LegendItem",
+                "size": 4614},
+            {
+                "name": "LegendRange",
+                "size": 10530}
+            ]},
+        {
+            "name": "operator",
+            "children": [
+                {
+                "name": "distortion",
+                "children": [
+                    {
+                    "name": "BifocalDistortion",
+                    "size": 4461},
+                {
+                    "name": "Distortion",
+                    "size": 6314},
+                {
+                    "name": "FisheyeDistortion",
+                    "size": 3444}
+                ]},
+            {
+                "name": "encoder",
+                "children": [
+                    {
+                    "name": "ColorEncoder",
+                    "size": 3179},
+                {
+                    "name": "Encoder",
+                    "size": 4060},
+                {
+                    "name": "PropertyEncoder",
+                    "size": 4138},
+                {
+                    "name": "ShapeEncoder",
+                    "size": 1690},
+                {
+                    "name": "SizeEncoder",
+                    "size": 1830}
+                ]},
+            {
+                "name": "filter",
+                "children": [
+                    {
+                    "name": "FisheyeTreeFilter",
+                    "size": 5219},
+                {
+                    "name": "GraphDistanceFilter",
+                    "size": 3165},
+                {
+                    "name": "VisibilityFilter",
+                    "size": 3509}
+                ]},
+            {
+                "name": "IOperator",
+                "size": 1286},
+            {
+                "name": "label",
+                "children": [
+                    {
+                    "name": "Labeler",
+                    "size": 9956},
+                {
+                    "name": "RadialLabeler",
+                    "size": 3899},
+                {
+                    "name": "StackedAreaLabeler",
+                    "size": 3202}
+                ]},
+            {
+                "name": "layout",
+                "children": [
+                    {
+                    "name": "AxisLayout",
+                    "size": 6725},
+                {
+                    "name": "BundledEdgeRouter",
+                    "size": 3727},
+                {
+                    "name": "CircleLayout",
+                    "size": 9317},
+                {
+                    "name": "CirclePackingLayout",
+                    "size": 12003},
+                {
+                    "name": "DendrogramLayout",
+                    "size": 4853},
+                {
+                    "name": "ForceDirectedLayout",
+                    "size": 8411},
+                {
+                    "name": "IcicleTreeLayout",
+                    "size": 4864},
+                {
+                    "name": "IndentedTreeLayout",
+                    "size": 3174},
+                {
+                    "name": "Layout",
+                    "size": 7881},
+                {
+                    "name": "NodeLinkTreeLayout",
+                    "size": 12870},
+                {
+                    "name": "PieLayout",
+                    "size": 2728},
+                {
+                    "name": "RadialTreeLayout",
+                    "size": 12348},
+                {
+                    "name": "RandomLayout",
+                    "size": 870},
+                {
+                    "name": "StackedAreaLayout",
+                    "size": 9121},
+                {
+                    "name": "TreeMapLayout",
+                    "size": 9191}
+                ]},
+            {
+                "name": "Operator",
+                "size": 2490},
+            {
+                "name": "OperatorList",
+                "size": 5248},
+            {
+                "name": "OperatorSequence",
+                "size": 4190},
+            {
+                "name": "OperatorSwitch",
+                "size": 2581},
+            {
+                "name": "SortOperator",
+                "size": 2023}
+            ]},
+        {
+            "name": "Visualization",
+            "size": 16540}
+        ]}*/
+    ]
+};
+
+var w = 260,
+    h = 800,
+    i = 0,
+    barHeight = 20,
+    barWidth = w * .8,
+    duration = 400,
+    root;
+
+var tree = d3.layout.tree().size([h, 100]);
+
+var diagonal = d3.svg.diagonal().projection(function(d) {
+    return [d.y, d.x];
+});
+
+var vis = d3.select("#container").append("svg:svg").attr("width", w).attr("height", h).append("svg:g").attr("transform", "translate(20,30)");
+
+data.x0 = 0;
+data.y0 = 0;
+update(root = data);
+
+function update(source) {
+
+    // Compute the flattened node list. TODO use d3.layout.hierarchy.
+    var nodes = tree.nodes(root);
+
+    // Compute the "layout".
+    nodes.forEach(function(n, i) {
+        n.x = i * barHeight;
+    });
+
+    // Update the nodes…
+    var node = vis.selectAll("g.node").data(nodes, function(d) {
+        return d.id || (d.id = ++i);
+    });
+
+    var nodeEnter = node.enter().append("svg:g").attr("class", "node").attr("transform", function(d) {
+        return "translate(" + source.y0 + "," + source.x0 + ")";
+    }).style("opacity", 1e-6);
+
+    // Enter any new nodes at the parent's previous position.
+    nodeEnter.append("svg:rect").attr("y", -barHeight / 2).attr("height", barHeight).attr("width", barWidth).style("fill", color).on("click", click);
+
+    nodeEnter.append("svg:text").attr("dy", 3.5).attr("dx", 5.5).text(function(d) {
+        return d.name;
+    });
+
+    // Add checkbox
+    nodeEnter.append("svg:circle").attr("r", 5).attr("fill", "white").on("click", function(d) {
+        if (d.selected) {
+            d.selected = false;
+            d3.select(this).attr("fill", "white");
+        } else {
+            d.selected = true;
+            d3.select(this).attr("fill", "black");
+        }
+        printSelectedNodes();
+    });
+
+    // Transition nodes to their new position.
+    nodeEnter.transition().duration(duration).attr("transform", function(d) {
+        return "translate(" + d.y + "," + d.x + ")";
+    }).style("opacity", 1);
+
+    node.transition().duration(duration).attr("transform", function(d) {
+        return "translate(" + d.y + "," + d.x + ")";
+    }).style("opacity", 1).select("rect").style("fill", color);
+
+    // Transition exiting nodes to the parent's new position.
+    node.exit().transition().duration(duration).attr("transform", function(d) {
+        return "translate(" + source.y + "," + source.x + ")";
+    }).style("opacity", 1e-6).remove();
+
+    // Update the links…
+    var link = vis.selectAll("path.link").data(tree.links(nodes), function(d) {
+        return d.target.id;
+    });
+
+    // Enter any new links at the parent's previous position.
+    link.enter().insert("svg:path", "g").attr("class", "link").attr("d", function(d) {
+        var o = {
+            x: source.x0,
+            y: source.y0
+        };
+        return diagonal({
+            source: o,
+            target: o
+        });
+    }).transition().duration(duration).attr("d", diagonal);
+
+    // Transition links to their new position.
+    link.transition().duration(duration).attr("d", diagonal);
+
+    // Transition exiting nodes to the parent's new position.
+    link.exit().transition().duration(duration).attr("d", function(d) {
+        var o = {
+            x: source.x,
+            y: source.y
+        };
+        return diagonal({
+            source: o,
+            target: o
+        });
+    }).remove();
+
+    // Stash the old positions for transition.
+    nodes.forEach(function(d) {
+        d.x0 = d.x;
+        d.y0 = d.y;
+    });
+}
+
+// Print to the console a list of selected nodes.
+function printSelectedNodes() {
+    var nodes = tree.nodes(root);
+    var selected = [];
+    nodes.forEach(function(n, i) {
+        if (n.selected) {
+          selected.push(n.name);
+        }
+    });
+    //console.log(selected);
+    $("#ETF3").show();
+     $("#ETF31").show();
+      $("#ETF32").show();
+
+       $("#ETF33").show();
+        $("#ETF34").show();
+         $("#ETF35").show();
+          $("#ETF36").show();
+
+}
+
+// Toggle children on click.
+function click(d) {
+    if (d.children) {
+        d._children = d.children;
+        d.children = null;
+    } else {
+        d.children = d._children;
+        d._children = null;
+    }
+    update(d);
+}
+
+function color(d) {
+    return d._children ? "#3182bd" : d.children ? "#c6dbef" : "#fd8d3c";
+}
+</script>
+
+<!-- Web2PDF Converter Button BEGIN -->
+<script type="text/javascript">
+
+</script>
+
+<!-- Web2PDF Converter Button END -->
+
+
+<script>
+$("#CHOOSE").click(function(){
+    $("#container").toggle();
+});
+</script>
+
+<!-- GRAPH D3 -->
+<SCRIPT>
+var n = 20, // number of layers
+    m = 200, // number of samples per layer
+    stack = d3.layout.stack().offset("wiggle"),
+    layers0 = stack(d3.range(n).map(function() { return bumpLayer(m); })),
+    layers1 = stack(d3.range(n).map(function() { return bumpLayer(m); }));
+
+var width = 860,
+    height = 500;
+
+var x = d3.scale.linear()
+    .domain([0, m - 1])
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .domain([0, d3.max(layers0.concat(layers1), function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); })])
+    .range([height, 0]);
+
+var color = d3.scale.linear()
+    .range(["#aad", "#556"]);
+
+var area = d3.svg.area()
+    .x(function(d) { return x(d.x); })
+    .y0(function(d) { return y(d.y0); })
+    .y1(function(d) { return y(d.y0 + d.y); });
+
+var svg = d3.select("#body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.selectAll("path")
+    .data(layers0)
+  .enter().append("path")
+    .attr("d", area)
+    .style("fill", function() { return color(Math.random()); });
+
+function transition() {
+    console.log("entered");
+  d3.selectAll("path")
+      .data(function() {
+        console.log("inside");
+        var d = layers1;
+         console.log("inside",d);
+        layers1 = layers0;
+        return layers0 = d;
+      })
+    .transition()
+      .duration(2500)
+      .attr("d", area);
+}
+
+// Inspired by Lee Byron's test data generator.
+function bumpLayer(n) {
+
+  function bump(a) {
+    var x = 1 / (.1 + Math.random()),
+        y = 2 * Math.random() - .5,
+        z = 10 / (.1 + Math.random());
+    for (var i = 0; i < n; i++) {
+      var w = (i / n - y) * z;
+      a[i] += x * Math.exp(-w * w);
+    }
+  }
+
+  var a = [], i;
+  for (i = 0; i < n; ++i) a[i] = 0;
+  for (i = 0; i < 5; ++i) bump(a);
+  return a.map(function(d, i) { return {x: i, y: Math.max(0, d)}; });
+}
+
+
+</script>
+<SCRIPT>
+$("#butt5").click(function(){
+            $("#graph_here").load("yieldtodur.html"); 
+
+        });
+</SCRIPT>
+<script>
+$("#1").click(function(){
+            $("#summary").slideToggle('slow');
+
+        });
+$("#2").click(function(){
+            $("#bench").slideToggle('slow');
+
+        });
+$("#3").click(function(){
+            $("#replication").slideToggle('slow');
+
+        });
+$("#4").click(function(){
+            $("#creation").slideToggle('slow');
+
+        });
+$("#5").click(function(){
+            $("#liq").slideToggle('slow');
+
+        });
+$("#tab").click(function(){
+            $("#creation").slideToggle('slow');
+
+        });
+$("#income_tag").click(function(){
+            $("#income").slideToggle('slow');
+
+        });
+
+$("#fund_tag").click(function(){
+            $("#fund_flows").slideToggle('slow');
+
+        });
+
+$("#risk_tag").click(function(){
+            $("#risk").slideToggle('slow');
+
+        });
+$("#ytd_tag").click(function(){
+            $("#ytd").slideToggle('slow');
+
+        });
+
+$("#graphical").click(function(){
+            $("div#body").slideToggle('slow');
+
+        });
+
+
+
+
+</script>
+
+<!-- butt color-->
+
+<script>
+
+/*$(document).ready(function(){
+    $("#butt10").effect( "highlight", {color: 'grey'},300000 );
+     $("#butt9").effect( "highlight", {color: 'grey'},300000 );
+      $("#butt7").effect( "highlight", {color: 'grey'},300000 );
+});*/
+</script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+$("#graphical").click(function(){
+    //console.log("gr clicked");
+    $("#detailed").hide();
+
+});
+
+
+
+$("#detailed_b").click(function(){
+    //console.log("gr clicked");
+     $("#graphical").show();
+
+    $("#detailed").show();
+     //$("#hor_bar").hide();
+     // $("#fix").hide();
+});
+$("#butt7").click(function(){
+    //console.log("gr clicked");
+    $(this).effect( "highlight", {color: 'black'},5800 );
+    $("#graph_here").show();
+     $("#hor_bar").hide();
+      $("#fix").hide();
+});
+$("#butt9").click(function(){
+    //console.log("gr clicked");
+    $(this).effect( "highlight", {color: 'black'},5800 );
+    $("#graph_here").hide();
+    $("#graph_here1").hide();
+    $("#fix").hide();
+    //$("#load").load("yieldtodur.html");
+     $("#hor_bar").show();
+
+
+});
+$("#butt10").click(function(){
+    //console.log("gr clicked");
+    $(this).effect( "highlight", {color: 'black'},5800 );
+    $("#graph_here").hide();
+    $("#graph_here1").hide();
+   // $("#load").load("bullet.html");
+     $("#hor_bar").hide();
+     $("#fix").show();
+
+
+});
+$("#butt8").click(function(){
+    //console.log("gr clicked");
+    $(this).effect( "highlight", {color: 'black'},5800 );
+    // $("#graph_here").hide();
+    $("#graph_here1").show();
+     $("#hor_bar").hide();
+      $("#fix").hide();
+});
+</script>
+<!--pie-->
+
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+(function() {
+var i = 0;
+var svg = d3.select("#graph_here")
+    .append("svg")  
+    .append("g")
+
+   /* svg.append("rect")
+    .attr("width", "960px")
+    .attr("height", "500px")
+    .attr("fill", "white");*/
+
+svg.append("g")
+    .attr("class", "slices");
+svg.append("g")
+    .attr("class", "labels");
+svg.append("g")
+    .attr("class", "lines");
+
+var width = 660,
+    height = 450,
+    radius = Math.min(width, height) / 2;
+
+var pie = d3.layout.pie()
+    .sort(null)
+    .value(function(d) {
+        return d.value;
+    });
+
+var arc = d3.svg.arc()
+    .outerRadius(radius * 0.8)
+    .innerRadius(radius * 0.4);
+
+var outerArc = d3.svg.arc()
+    .innerRadius(radius * 0.9)
+    .outerRadius(radius * 0.9);
+
+svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+var key = function(d){ return d.data.label; };
+
+var color = d3.scale.ordinal()
+    .domain(["North America", "South&Central", "Western Europe", "Asia Pacific", "Eastern Europe", "Africa/Middle East", "Other"])
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+function randomData (){
+    var labels = color.domain();
+    return labels.map(function(label){
+        return { label: label, value: Math.random() }
+    });
+}
+
+change(randomData());
+
+d3.select(".randomize")
+    .on("click", function(){
+        
+       /* if (i == 0 ){
+          $("#1").show();
+        }
+        if (i == 1 ){
+          $("#2").show();
+        }
+        if (i == 2 ){
+          $("#3").show();
+        }
+        else 
+          i = 0 ;*/
+        change(randomData());
+        i++;
+
+    });
+
+
+function change(data) {
+    console.log("date in pie rand",data);
+    /* ------- PIE SLICES -------*/
+    var slice = svg.select(".slices").selectAll("path.slice")
+        .data(pie(data), key);
+
+    slice.enter()
+        .insert("path")
+        .style("fill", function(d) { return color(d.data.label); })
+        .attr("class", "slice");
+
+    slice       
+        .transition().duration(1000)
+        .attrTween("d", function(d) {
+            this._current = this._current || d;
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function(t) {
+                return arc(interpolate(t));
+            };
+        })
+
+    slice.exit()
+        .remove();
+
+    /* ------- TEXT LABELS -------*/
+
+    var text = svg.select(".labels").selectAll("text")
+        .data(pie(data), key);
+
+    text.enter()
+        .append("text")
+        .attr("dy", ".35em")
+        .text(function(d) {
+            return d.data.label;
+        });
+    
+    function midAngle(d){
+        return d.startAngle + (d.endAngle - d.startAngle)/2;
+    }
+
+    text.transition().duration(1000)
+        .attrTween("transform", function(d) {
+            this._current = this._current || d;
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function(t) {
+                var d2 = interpolate(t);
+                var pos = outerArc.centroid(d2);
+                pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+                return "translate("+ pos +")";
+            };
+        })
+        .styleTween("text-anchor", function(d){
+            this._current = this._current || d;
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function(t) {
+                var d2 = interpolate(t);
+                return midAngle(d2) < Math.PI ? "start":"end";
+            };
+        });
+
+    text.exit()
+        .remove();
+
+    /* ------- SLICE TO TEXT POLYLINES -------*/
+
+    var polyline = svg.select(".lines").selectAll("polyline")
+        .data(pie(data), key);
+    
+    polyline.enter()
+        .append("polyline");
+
+    polyline.transition().duration(1000)
+        .attrTween("points", function(d){
+            this._current = this._current || d;
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function(t) {
+                var d2 = interpolate(t);
+                var pos = outerArc.centroid(d2);
+                pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+                return [arc.centroid(d2), outerArc.centroid(d2), pos];
+            };          
+        });
+    
+    polyline.exit()
+        .remove();
+};
+
+})();
+</script>
+
+<!--stacked bar -->
+<!--
+<script type="text/javascript">
+
+
+
+var n = 4, // number of layers
+    m = 58, // number of samples per layer
+    stack = d3.layout.stack(),
+    layers = stack(d3.range(n).map(function() { return bumpLayer(m, .1); })),
+    yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); }),
+    yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); });
+
+var margin = {top: 40, right: 10, bottom: 20, left: 10},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.scale.ordinal()
+    .domain(d3.range(m))
+    .rangeRoundBands([0, width], .08);
+
+var y = d3.scale.linear()
+    .domain([0, yStackMax])
+    .range([height, 0]);
+
+var color = d3.scale.linear()
+    .domain([0, n - 1])
+    .range(["#aad", "#556"]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .tickSize(0)
+    .tickPadding(6)
+    .orient("bottom");
+
+var svg = d3.select("#graph_here1").append("svg")
+    .attr("width", width + margin.left + margin.right-80)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var layer = svg.selectAll(".layer")
+    .data(layers)
+  .enter().append("g")
+    .attr("class", "layer")
+    .style("fill", function(d, i) { return color(i); });
+
+var rect = layer.selectAll("rect")
+    .data(function(d) { return d; })
+  .enter().append("rect")
+    .attr("x", function(d) { return x(d.x); })
+    .attr("y", height)
+    .attr("width", x.rangeBand())
+    .attr("height", 0);
+
+rect.transition()
+    .delay(function(d, i) { return i * 10; })
+    .attr("y", function(d) { return y(d.y0 + d.y); })
+    .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); });
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+d3.selectAll("input").on("change", change);
+
+var timeout = setTimeout(function() {
+  d3.select("input[value=\"grouped\"]").property("checked", true).each(change);
+}, 2000);
+
+function change() {
+  clearTimeout(timeout);
+  if (this.value === "grouped") transitionGrouped();
+  else transitionStacked();
+}
+
+function transitionGrouped() {
+  y.domain([0, yGroupMax]);
+
+  rect.transition()
+      .duration(500)
+      .delay(function(d, i) { return i * 10; })
+      .attr("x", function(d, i, j) { return x(d.x) + x.rangeBand() / n * j; })
+      .attr("width", x.rangeBand() / n)
+    .transition()
+      .attr("y", function(d) { return y(d.y); })
+      .attr("height", function(d) { return height - y(d.y); });
+}
+
+function transitionStacked() {
+  y.domain([0, yStackMax]);
+
+  rect.transition()
+      .duration(500)
+      .delay(function(d, i) { return i * 10; })
+      .attr("y", function(d) { return y(d.y0 + d.y); })
+      .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); })
+    .transition()
+      .attr("x", function(d) { return x(d.x); })
+      .attr("width", x.rangeBand());
+}
+
+// Inspired by Lee Byron's test data generator.
+function bumpLayer(n, o) {
+
+  function bump(a) {
+    var x = 1 / (.1 + Math.random()),
+        y = 2 * Math.random() - .5,
+        z = 10 / (.1 + Math.random());
+    for (var i = 0; i < n; i++) {
+      var w = (i / n - y) * z;
+      a[i] += x * Math.exp(-w * w);
+    }
+  }
+
+  var a = [], i;
+  for (i = 0; i < n; ++i) a[i] = o + o * Math.random();
+  for (i = 0; i < 5; ++i) bump(a);
+  return a.map(function(d, i) { return {x: i, y: Math.max(0, d)}; });
+}
+</script>
+-->
+
+<!-- high container -->
+ <script src="js/highcharts.js"></script>
+<script src="js/highcharts-3d.js"></script>
+
+<script type="text/javascript">
+/*$(function () {
+    $('#container').highcharts({
+        container: {
+            type: 'column',
+            margin: 75,
+            options3d: {
+        enabled: true,
+                alpha: 15,
+                beta: 15,
+                depth: 350
+            }
+        },
+        plotOptions: {
+            column: {
+                depth: 60,
+                stacking: true,
+                grouping: false,
+                groupZPadding: 10
+            }
+        },
+        series: [{
+            data: [1, 2, 4, 3, 2, 4,6,10,3,3,7,2],
+            stack: 0
+        }, {
+            data: [5, 6, 3, 4, 1, 2,3,7,2,0,5,12],
+            stack: 2
+        }, {
+            data: [7, 9, 8, 7, 5, 8,2,8,2,4,7,14],
+            stack: 1
+        }]
+
+
+    });
+
+});
+*/
+</script>
+
+<!--fixed inc -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="js/bullet.js"></script>
+<script>
+(function() {
+var margin = {top: 5, right: 40, bottom: 20, left: 120},
+    width = 960 - margin.left - margin.right,
+    height = 50 - margin.top - margin.bottom;
+
+var container = d3.bullet()
+    .width(width)
+    .height(height);
+
+    var data1 = [
+  {"title":"INTERM TERM(3-10YR)","subtitle":"%","ranges":[50,65,90],"measures":[20,67],"markers":[38]},
+  {"title":"LONG TERM (>10YR)","subtitle":"%","ranges":[20,25,100],"measures":[21,83],"markers":[56]},
+  {"title":"SHORT  TERM (1-3 YR)","subtitle":"%","ranges":[50,85,100],"measures":[26,70],"markers":[42]},
+  {"title":"OTHER/UNKNOWN ","subtitle":"%","ranges":[40,80,90],"measures":[40,89],"markers":[32]},
+  
+];
+
+//d3.json("bullets.json", function(error, data) {
+  //if (error) throw error;
+
+  var svg = d3.select("#fix").selectAll("svg")
+      .data(data1)
+    .enter().append("svg")
+      .attr("class", "bullet")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", 90)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .call(container);
+
+  var title = svg.append("g")
+      .style("text-anchor", "end")
+      .attr("transform", "translate(0," + height / 2 + ")");
+
+  title.append("text")
+      .attr("class", "title")
+      .text(function(d) { return d.title; });
+
+  title.append("text")
+      .attr("class", "subtitle")
+      .attr("dy", "1em")
+      .text(function(d) { return d.subtitle; });
+
+  d3.selectAll("#button1").on("click", function() {
+    //console.log("entered click");
+    svg.datum(randomize).call(container.duration(1000)); // TODO automatic transition
+  });
+//});
+
+function randomize(d) {
+    //console.log("d is ",d);
+    
+  if (!d.randomizer) d.randomizer = randomizer(d);
+  d.ranges = d.ranges.map(d.randomizer);
+  d.markers = d.markers.map(d.randomizer);
+  d.measures = d.measures.map(d.randomizer);
+  return d;
+}
+
+function randomizer(d) {
+
+  var k = d3.max(d.ranges) * .2;
+  return function(d) {
+    return Math.max(0, d + k * (Math.random() - .5));
+  };
+}
+})();
+</script>
+<script>
+(function() {
+var data = {
+  labels: [
+    'Basic Materials %', 'Communications%', 'Consumer,Cylindrical %',
+    'Consumer Cyclical %', 'Consumer  Non Cyclical %', 'Diversified %','Energy %','Financial %','Industrial%','Technology %','Utilities %','Government %','Other/Unknown %'
+  ],
+  series: [
+    {
+      label: 'HYG',
+      values: [4, 8, 15, 16, 23, 42,12, 43, 22, 11, 73, 25,1]
+    },
+    {
+      label: 'AGG',
+      values: [12, 43, 22, 11, 73, 25,31, 28, 14, 8, 15, 21,4]
+    },
+    {
+      label: 'TLH',
+      values: [31, 28, 14, 8, 15, 21,4, 8, 15, 16, 23, 42 ,0.5]
+    },]
+};
+
+var chartWidth       = 400,
+    barHeight        = 20,
+    groupHeight      = barHeight * data.series.length,
+    gapBetweenGroups = 5,
+    spaceForLabels   = 250,
+    spaceForLegend   = 20;
+
+// Zip the series data together (first values, second values, etc.)
+var zippedData = [];
+for (var i=0; i<data.labels.length; i++) {
+  for (var j=0; j<data.series.length; j++) {
+    zippedData.push(data.series[j].values[i]);
+  }
+}
+
+// Color scale
+var color = d3.scale.category20();
+var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
+
+var x = d3.scale.linear()
+    .domain([0, d3.max(zippedData)])
+    .range([0, chartWidth]);
+
+var y = d3.scale.linear()
+    .range([chartHeight + gapBetweenGroups, 0]);
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .tickFormat('')
+    .tickSize(0)
+    .orient("left");
+
+// Specify the container area and dimensions
+var container = d3.select(".cont")
+    .attr("width", spaceForLabels + chartWidth + spaceForLegend)
+    .attr("height", chartHeight+800);
+
+// Create bars
+var bar = container.selectAll("g")
+    .data(zippedData)
+    .enter().append("g")
+    .attr("transform", function(d, i) {
+      return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i/data.series.length))) + ")";
+    });
+
+// Create rectangles of the correct width
+bar.append("rect") .transition()
+        .delay(function(d, i) {
+            return i * 200;
+        })
+        .duration(500)
+    .attr("fill", function(d,i) { return color(i % data.series.length); })
+    .attr("class", "bar")
+    .attr("width", x)
+    .attr("height", barHeight - 1);
+
+// Add text label in bar
+bar.append("text") .transition()
+        .delay(function(d, i) {
+            return i * 200;
+        })
+        .duration(500)
+    .attr("x", function(d) { return x(d) - 3; })
+    .attr("y", barHeight / 2)
+    .attr("fill", "red")
+    .attr("dy", ".35em")
+    .text(function(d) { return d; });
+
+// Draw labels
+bar.append("text")
+    .attr("class", "label")
+    .attr("x", function(d) { return - 10; })
+    .attr("y", groupHeight / 2)
+    .attr("dy", ".35em")
+    .text(function(d,i) {
+      if (i % data.series.length === 0)
+        return data.labels[Math.floor(i/data.series.length)];
+      else
+        return ""});
+
+container.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups/2 + ")")
+      .call(yAxis);
+
+// Draw legend
+var legendRectSize = 18,
+    legendSpacing  = 4;
+
+var legend = container.selectAll('.legend')
+    .data(data.series)
+    .enter()
+    .append('g')
+    .attr('transform', function (d, i) {
+        var height = legendRectSize + legendSpacing;
+        var offset = -gapBetweenGroups/2;
+        var horz = spaceForLabels + chartWidth + 40 - legendRectSize;
+        var vert = i * height - offset;
+        return 'translate(' + horz + ',' + vert + ')';
+    });
+
+legend.append('rect')
+    .attr('width', legendRectSize)
+    .attr('height', legendRectSize)
+    .style('fill', function (d, i) { return color(i); })
+    .style('stroke', function (d, i) { return color(i); });
+
+legend.append('text')
+    .attr('class', 'legend')
+    .attr('x', legendRectSize + legendSpacing)
+    .attr('y', legendRectSize - legendSpacing)
+    .text(function (d) { return d.label; });
+
+})();
+
+</script>
+
+<!-- right menu -->
+    <script src="js/menu_nav.js"></script>
+<script>
+        
+  /**
+   * Push right instantiation and action.
+   */
+  var pushRight = new Menu({
+    wrapper: '#o-wrapper',
+    type: 'push-right',
+    menuOpenerClass: '.c-button',
+    maskId: '#c-mask'
+  });
+ 
+
+  var pushRightBtn = document.querySelector('#c-button--push-right');
+ 
+  pushRightBtn.addEventListener('click', function(e) {
+    console.log("clicked");
+    e.preventDefault;
+    pushRight.open();
+  });
+
+        </script>
+
+
+</body>
+</html>
